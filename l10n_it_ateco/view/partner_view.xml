@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<odoo>
+
+        <record id="view_partner_form_inherit_ateco" model="ir.ui.view" >
+            <field name="name">partner.form.ateco</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+
+                <notebook position="inside">
+                    <page string="Ateco">
+                        <field name="ateco_category_ids" mode="kanban" options="{'no_create': True}">
+                            <kanban>
+                                <field name="name"/>
+                                <field name="code"/>
+                                <field name="parent_id"/>
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                            <a t-if="!read_only_mode" type="delete" class="fa fa-times pull-right"/>
+                                            <div class="text-center">
+                                               <strong><span><field name="code"/></span></strong>
+                                            </div>
+                                            <hr class="mt8 mb8"/>
+                                            <div class="row">
+                                                <div class="col-xs-12 text-center">
+                                                    <span><field name="name"/></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                            <form>
+                                <group>
+                                    <field name="name" readonly="1"/>
+                                    <field name="code" readonly="1"/>
+                                    <field name="description" readonly="1"/>
+                                    <field name="parent_id" readonly="1" options="{'no_open': True}"/>
+                                </group>
+                            </form>
+                            <tree>
+                                <field name="name"/>
+                                <field name="code"/>
+                                <field name="description"/>
+                                <field name="parent_id"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+
+            </field>
+        </record>
+
+</odoo>
